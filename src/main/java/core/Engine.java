@@ -3,7 +3,7 @@ package core;
 
 import math.Transform;
 import org.lwjgl.glfw.GLFW;
-import util.TimeUtility;
+import utils.TimeUtility;
 
 import java.io.IOException;
 
