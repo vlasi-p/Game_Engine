@@ -148,6 +148,17 @@ public class Window {
         GLFW.glfwTerminate();
     }
 
+    public void setFullscreen(boolean fullscreen) {
+        isFullscreen = fullscreen;
+        isResized = true;
+        if(isFullscreen){
+            GLFW.glfwGetWindowPos(window, windowPosX, windowPosY);
+            GLFW.glfwSetWindowMonitor(window, GLFW.glfwGetPrimaryMonitor(), 0, 0, width, height, 0);
+        }else {
+            GLFW.glfwSetWindowMonitor(window, 0, windowPosX[0], windowPosY[0], width, height, 0);
+        }
+    }
+
     public void setBackgroundColor(float r, float g, float b){
         background.set(r, g, b);
     }
@@ -189,17 +200,6 @@ public class Window {
      */
     public static long getWindow() {
         return window;
-    }
-
-    public void setFullscreen(boolean fullscreen) {
-        isFullscreen = fullscreen;
-        isResized = true;
-        if(isFullscreen){
-            GLFW.glfwGetWindowPos(window, windowPosX, windowPosY);
-            GLFW.glfwSetWindowMonitor(window, GLFW.glfwGetPrimaryMonitor(), 0, 0, width, height, 0);
-        }else {
-            GLFW.glfwSetWindowMonitor(window, 0, windowPosX[0], windowPosY[0], width, height, 0);
-        }
     }
 
 }

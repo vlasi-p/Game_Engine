@@ -51,17 +51,18 @@ public class Mesh {
         FloatBuffer positionBuffer = MemoryUtil.memAllocFloat(vertices.length * 3);
         float[] positionData = new float[vertices.length * 3];
         for (int i = 0; i < vertices.length; i++){
-            positionData[i * 3] = vertices[i].get().getX();
-            positionData[i * 3 + 1] = vertices[i].get().getY();
-            positionData[i * 3 + 2] = vertices[i].get().getZ();
+            positionData[i * 3] = vertices[i].getPos().getX();
+            positionData[i * 3 + 1] = vertices[i].getPos().getY();
+            positionData[i * 3 + 2] = vertices[i].getPos().getZ();
         }
         positionBuffer.put(positionData).flip();
 
         pbo = GL15.glGenBuffers();
         GL15.glBindBuffer(GL_ARRAY_BUFFER, pbo);
-        GL15.glBufferData(GL_ARRAY_BUFFER, positionBuffer, GL_STATIC_DRAW);
-        GL20.glVertexAttribPointer(0, 3, GL_UNSIGNED_INT, false, 0, 0);
+        GL15.glBufferData(GL_ARRAY_BUFFER, positionBuffer, GL15.GL_STATIC_DRAW);
+        GL20.glVertexAttribPointer(0, 3, GL_FLOAT, false, 0, 0);
         GL15.glBindBuffer(GL_ARRAY_BUFFER, 0);
+
         IntBuffer indicesBuffer = MemoryUtil.memAllocInt(indices.length);
         indicesBuffer.put(indices).flip();
 
@@ -120,9 +121,9 @@ public class Mesh {
         FloatBuffer buffer = BufferUtils.createFloatBuffer(vertices.length * Vertex.SIZE);
 
         for (int i = 0; i < vertices.length; i++) {
-            buffer.put(vertices[i].get().getX());
-            buffer.put(vertices[i].get().getY());
-            buffer.put(vertices[i].get().getZ());
+            buffer.put(vertices[i].getPos().getX());
+            buffer.put(vertices[i].getPos().getY());
+            buffer.put(vertices[i].getPos().getZ());
         }
 
         buffer.flip();
