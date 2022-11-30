@@ -34,7 +34,7 @@ public class Vertex {
      * Getter for vector of vertex
      * @return this vector
      */
-    public Vector3f get(){
+    public Vector3f getPos(){
         return this.pos;
     }
 

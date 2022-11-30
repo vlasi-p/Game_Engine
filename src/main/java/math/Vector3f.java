@@ -8,15 +8,6 @@ public class Vector3f {
     private float x, y, z;
 
     /**
-     * initializes three-dimensional vector at origin
-     */
-    public Vector3f(){
-        this.x = 0F;
-        this.y = 0F;
-        this.z = 0F;
-    }
-
-    /**
      * initializes three-dimensional vector at given coordinates
      * @param x1 value of x-axis
      * @param y1 value of y-axis
@@ -169,6 +160,26 @@ public class Vector3f {
     }
 
     /**
+     * sets all three parameters ot this object
+     * @param x1 value to be set to x
+     * @param y1 value to be set to y
+     * @param z1 value to be set to z
+     * @return this object
+     */
+    public void set(float x1, float y1, float z1){
+        this.x = x1;
+        this.y = y1;
+        this.z = z1;
+    }
+
+    /**
+     * @return x of this object
+     */
+    public float getX(){
+        return this.x;
+    }
+
+    /**
      * sets x parameter for this object
      * @param x1 value to be set
      * @return this object
@@ -176,6 +187,13 @@ public class Vector3f {
     public Vector3f setX(float x1){
         this.x = x1;
         return this;
+    }
+
+    /**
+     * @return y of this object
+     */
+    public float getY(){
+        return this.y;
     }
 
     /**
@@ -189,6 +207,13 @@ public class Vector3f {
     }
 
     /**
+     * @return z of this object
+     */
+    public float getZ(){
+        return this.z;
+    }
+
+    /**
      * sets z parameter for this object
      * @param z1 value to be set
      * @return this object
@@ -197,41 +222,5 @@ public class Vector3f {
         this.z = z1;
         return this;
     }
-
-    /**
-     * sets all three parameters ot this object
-     * @param x1 value to be set to x
-     * @param y1 value to be set to y
-     * @param z1 value to be set to z
-     * @return this object
-     */
-    public Vector3f set(float x1, float y1, float z1){
-        this.x = x1;
-        this.y = y1;
-        this.z = z1;
-        return this;
-    }
-
-    /**
-     * @return x of this object
-     */
-    public float getX(){
-        return this.x;
-    }
-
-    /**
-     * @return y of this object
-     */
-    public float getY(){
-        return this.y;
-    }
-
-    /**
-     * @return z of this object
-     */
-    public float getZ(){
-        return this.z;
-    }
-
 
 }
