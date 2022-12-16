@@ -2,13 +2,10 @@ package render;
 
 import math.Matrix4f;
 import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 import org.lwjgl.system.MemoryUtil;
-
-import static org.lwjgl.opengl.GL15.glGenBuffers;
 import static org.lwjgl.opengl.GL20.GL_ARRAY_BUFFER;
 import static org.lwjgl.opengl.GL20.GL_ELEMENT_ARRAY_BUFFER;
 import static org.lwjgl.opengl.GL20.GL_FLOAT;
