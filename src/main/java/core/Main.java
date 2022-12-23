@@ -4,57 +4,57 @@ import math.Vector3f;
 import org.lwjgl.glfw.GLFW;
 import render.Mesh;
 import render.Renderer;
+import render.Shader;
 import render.Vertex;
 
-public class Main implements Runnable{
-
+public class Main implements Runnable {
     public Thread game;
-    public static Window window;
-    public static Renderer renderer;
-    public static final int WIDTH = 1280, HEIGHT = 760;
-    public static final String TITLE = "3D Engine";
+    public Window window;
+    public Renderer renderer;
+    public Shader shader;
+    public final int WIDTH = 1280, HEIGHT = 760;
 
-    public static Mesh mesh = new Mesh(new Vertex[]{
-            new Vertex(new Vector3f(-0.5f, 0.5f, 0.0f)),
+    public Mesh mesh = new Mesh(new Vertex[] {
+            new Vertex(new Vector3f(-0.5f,  0.5f, 0.0f)),
             new Vertex(new Vector3f(-0.5f, -0.5f, 0.0f)),
-            new Vertex(new Vector3f(0.5f, -0.5f, 0.0f)),
-            new Vertex(new Vector3f(0.5f, 0.5f, 0.0f))
-    }, new int[]{
+            new Vertex(new Vector3f( 0.5f, -0.5f, 0.0f)),
+            new Vertex(new Vector3f( 0.5f,  0.5f, 0.0f))
+    }, new int[] {
             0, 1, 2,
             0, 3, 2
     });
 
-    public void start(){
+    public void start() {
         game = new Thread(this, "game");
         game.start();
     }
 
-    public static void init(){
-        window = new Window(WIDTH, HEIGHT, TITLE);
-        renderer = new Renderer();
+    public void init() {
+        window = new Window(WIDTH, HEIGHT, "Game");
+        shader = new Shader("/shaders/mainVertex.glsl", "/shaders/mainFragment.glsl");
+        renderer = new Renderer(shader);
         window.setBackgroundColor(1.0f, 0, 0);
         window.create();
         mesh.create();
+        shader.create();
     }
 
-    public void run(){
+    public void run() {
         init();
-        while (!window.shouldClose() && !Input.isKeyDown(GLFW.GLFW_KEY_ESCAPE)){
+        while (!window.shouldClose() && !Input.isKeyDown(GLFW.GLFW_KEY_ESCAPE)) {
             update();
             render();
-            if (Input.isKeyDown(GLFW.GLFW_KEY_F11))
-                window.setFullscreen(!window.isFullscreen());
+            if (Input.isKeyDown(GLFW.GLFW_KEY_F11)) window.setFullscreen(!window.isFullscreen());
         }
         window.destroy();
     }
 
-    public void update(){
+    private void update() {
         window.update();
-        if(Input.isKeyDown(GLFW.GLFW_KEY_SPACE))
-            System.out.println("X: " + Input.getCursorX() + ", Y: " + Input.getCursorY());
+        if (Input.isButtonDown(GLFW.GLFW_MOUSE_BUTTON_LEFT)) System.out.println("X: " + Input.getScrollX() + ", Y: " + Input.getScrollY());
     }
 
-    public void render(){
+    private void render() {
         renderer.renderMesh(mesh);
         window.swapBuffers();
     }
